@@ -32,7 +32,7 @@ body {
   flex-direction: column;
   box-sizing: border-box;
   padding: 20px;
-  width: 320px;
+  width: 280px;
   height: 100vh;
   background-color: #ffffff;
 }
@@ -92,13 +92,7 @@ body {
   font-size: 40px;
 }
 .block1__buttons {
-  flex-direction: row;
-  flex-wrap: nowrap;
-  justify-content: space-between;
   color: #7E7E82;
-}
-.block1__buttons .swiper-wrapper {
-  align-items: center;
 }
 .block1__buttons .swiper-slide {
   width: -moz-max-content;
@@ -130,14 +124,21 @@ body {
 }
 .block2__brands {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
+  padding: 10px;
 }
 .block2__brands--item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   background-color: #ffffff;
   padding: 10px 20px;
   border-radius: 6px;
   border: 2px solid #EAEAEA;
+}
+.block2__brands--itemnth-last-child:hover {
+  cursor: pointer;
 }
 
 .block3 {
@@ -147,30 +148,90 @@ body {
 .block3__header {
   text-transform: uppercase;
   color: #7E7E82;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
 .block3__offer {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 20px;
 }
-
-.block4__grid--block {
+.block3__offer--item {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 220px;
+  height: 160px;
+  padding: 10px 20px;
   background-color: #ffffff;
+  border-radius: 6px;
+  border: 1px solid #EAEAEA;
 }
-.block4__grid--block--line1 {
-  display: flex;
+.block3__offer--item img {
+  margin-left: auto;
+  margin-top: auto;
 }
-.block4__grid--block--line2 {
-  display: flex;
+
+.block4__header {
+  text-transform: uppercase;
+  color: #7E7E82;
+  margin-top: 20px;
+  margin-bottom: 20px;
 }
-.block4__grid--block--line3 {
-  display: flex;
+.block4__card-table {
+  background-color: #ffffff;
+  padding: 20px;
 }
-.block4__grid--block--line4 {
-  display: flex;
+.block4__card-table__header, .block4__card-table__row {
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr auto;
+  align-items: center;
+  gap: 16px;
 }
-.block4__grid--block--line5 {
-  display: flex;
+.block4__card-table__header {
+  padding: 20px;
+  padding-bottom: 16px;
+  font-size: 14px;
+  color: #7E7E82;
+}
+.block4__card-table__row {
+  background-color: #ffffff;
+  padding: 20px;
+  border-top: 1px solid #EAEAEA;
+  color: #000000;
+  font-size: 15px;
+}
+.block4__card-table__row__btn-order {
+  background-color: #FF3E79;
+  color: #ffffff;
+  border: none;
+  border-radius: 30px;
+  padding: 10px 24px;
+  justify-content: space-between;
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease, transform 0.1s ease;
+}
+.block4__card-table__row__btn-order:hover {
+  background-color: rgb(255, 87.5, 138.7046632124);
+  transform: translateY(-1px);
+}
+.block4__card-table__row__btn-order:active {
+  transform: translateY(0);
+}
+.block4__card-footer {
+  position: relative;
+  margin-bottom: 50px;
+}
+.block4__card-footer :nth-child(2) {
+  font-weight: 500;
+  font-size: 16px;
+}
+.block4__card-footer :nth-child(3) {
+  position: absolute;
 }
 
 footer {
@@ -201,6 +262,15 @@ footer p:nth-child(3) {
   .block1__header {
     display: none;
   }
+  .block1__buttons {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+  }
+  .block2__brands--item :nth-child(n+5) {
+    display: none;
+  }
 }
 @media (max-width: 1119px) {
   .window {
@@ -218,14 +288,27 @@ footer p:nth-child(3) {
     display: flex;
     flex-direction: column;
   }
+  .block2__brands {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .block2__brands--item :nth-child(n+4) {
+    display: none;
+  }
+  .block3__offers {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 @media (max-width: 767px) {
+  .block1__buttons {
+    overflow-y: hidden;
+  }
   .block1__header--center {
     display: none;
   }
-  footer {
-    display: flex;
-    flex-direction: column;
-    text-align: center;
+  .block2 {
+    overflow: hidden;
+  }
+  .block3 {
+    overflow: hidden;
   }
 }/*# sourceMappingURL=styles.css.map */

@@ -4,6 +4,10 @@ $body: #f8f8f8;
 $secondary-text-color: #7E7E82;
 $border: #EAEAEA;
 $accent: #41F6D7;
+$pink: #FF3E79;
+
+$radius-card: 16px;
+$radius-btn: 30px;
 
 @font-face {
     font-family: 'TTLakes';
@@ -43,7 +47,7 @@ body {
     flex-direction: column;
     box-sizing: border-box;
     padding: 20px;
-    width: 320px;
+    width: 280px;
     height: 100vh;
     background-color: $white;
 
@@ -127,16 +131,9 @@ body {
     }
 
     &__buttons {
-        flex-direction: row;
-        flex-wrap: nowrap;
-        justify-content: space-between;
+
         color: $secondary-text-color;
 
-
-
-        .swiper-wrapper {
-            align-items: center;
-        }
 
         .swiper-slide {
             width: max-content;
@@ -174,16 +171,25 @@ body {
 
     &__brands {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
+        padding: 10px;
 
 
         &--item {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
             background-color: $white;
             padding: 10px 20px;
             border-radius: 6px;
             border: 2px solid $border;
+
+            &nth-last-child:hover {
+                cursor: pointer;
+            }
         }
+
     }
 }
 
@@ -194,53 +200,129 @@ body {
     &__header {
         text-transform: uppercase;
         color: $secondary-text-color;
+        margin-top: 20px;
+        margin-bottom: 20px;
 
     }
 
     &__offer {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(4, 1fr);
         gap: 20px;
+
+        &--item {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            width: 220px;
+            height: 160px;
+            padding: 10px 20px;
+            background-color: $white;
+            border-radius: 6px;
+            border: 1px solid $border;
+
+            img {
+                margin-left: auto;
+                margin-top: auto;
+            }
+        }
     }
 
 }
 
 .block4 {
-    &__header {}
+    &__header {
+        text-transform: uppercase;
+        color: $secondary-text-color;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
 
-    &__grid {
-        &--titles {}
+    &__card {
 
-        &--block {
-
+        &-table {
             background-color: $white;
+            padding: 20px;
 
-            &--br {}
-
-            &--line1 {
-                display: flex;
+            &__header,
+            &__row {
+                display: grid;
+                // 1-я колонка занимает все свободное место (1fr), остальные подстраиваются
+                grid-template-columns: 2fr 1fr 1fr auto;
+                align-items: center;
+                gap: 16px;
             }
 
-            &--line2 {
-                display: flex;
+            &__header {
+                padding: 20px;
+                padding-bottom: 16px;
+                font-size: 14px;
+                color: $secondary-text-color;
+
+                &-col {}
             }
 
-            &--line3 {
-                display: flex;
+            &__row {
+
+                background-color: $white;
+                padding: 20px;
+                border-top: 1px solid $border; // Разделительная линия между услугами
+                color: $black;
+                font-size: 15px;
+
+
+                &-cell {
+                    &--title {}
+                }
+
+                &__btn-order {
+                    background-color: $pink;
+                    color: #ffffff;
+                    border: none;
+                    border-radius: $radius-btn;
+                    padding: 10px 24px;
+                    justify-content: space-between;
+                    font-size: 12px;
+                    font-weight: 700;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                    cursor: pointer;
+                    transition: background-color 0.2s ease, transform 0.1s ease;
+
+                    &:hover {
+                        background-color: lighten($pink, 5%);
+                        transform: translateY(-1px);
+                    }
+
+                    &:active {
+                        transform: translateY(0);
+                    }
+
+                }
+
             }
 
-            &--line4 {
-                display: flex;
-            }
-
-            &--line5 {
-                display: flex;
-            }
 
 
         }
-    }
 
+        &-footer {
+            position: relative;
+            margin-bottom: 50px;
+
+            :nth-child(2) {
+                font-weight: 500;
+                font-size: 16px;
+            }
+
+            :nth-child(3) {
+                position: absolute;
+
+            }
+
+        }
+
+    }
 
 }
 
@@ -277,8 +359,28 @@ footer {
         margin-left: 320px;
     }
 
-    .block1__header {
-        display: none;
+    .block1 {
+        &__header {
+            display: none;
+        }
+
+        &__buttons {
+            display: flex;
+            flex-direction: row;
+            flex-wrap: nowrap;
+            justify-content: space-between;
+        }
+
+    }
+
+    .block2 {
+        &__brands {
+            &--item {
+                :nth-child(n+5) {
+                    display: none;
+                }
+            }
+        }
     }
 
 }
@@ -305,12 +407,34 @@ footer {
         }
     }
 
+    .block2 {
+        &__brands {
+            grid-template-columns: repeat(3, 1fr);
+
+            &--item {
+                :nth-child(n+4) {
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .block3 {
+        &__offers {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
 }
 
 // MOBILE STYLES
 @media (max-width: 767px) {
 
     .block1 {
+
+        &__buttons {
+            overflow-y: hidden;
+        }
+
         &__header {
             &--center {
                 display: none;
@@ -318,10 +442,12 @@ footer {
         }
     }
 
-    footer {
-        display: flex;
-        flex-direction: column;
-        text-align: center;
+    .block2 {
+        overflow: hidden;
+    }
+
+    .block3 {
+        overflow: hidden;
     }
 
 }

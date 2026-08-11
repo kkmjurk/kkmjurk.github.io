@@ -17,3 +17,10 @@ const buttonsSwiper = new Swiper('.block1__buttons', {
     spaceBetween: 16,
     freeMode: true,
 });
+
+// document.querySelectorAll('.block2__span, .block3__test--span')array.forEach(btn => {
+//     btn.addEventListener('click', () => {
+//         const block = btn.closest('.block2') || btn, closest('.block3');
+//         block.querySelectorAll('.hidden').forEach(item => item.classList.remove('hidden'));
+//     });
+// });
