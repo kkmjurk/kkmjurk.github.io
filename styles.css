@@ -229,6 +229,9 @@ body {
   color: #000000;
   font-size: 15px;
 }
+.block4__card-table__row-hidden {
+  display: none;
+}
 .block4__card-table__row__btn-order {
   background-color: #FF3E79;
   color: #ffffff;
@@ -309,7 +312,7 @@ footer p:nth-child(3) {
     width: auto;
   }
 }
-@media (max-width: 1119px) {
+@media (max-width: 1119px) and (min-width: 768px) {
   .window {
     position: fixed;
     top: 0;
@@ -333,11 +336,22 @@ footer p:nth-child(3) {
   .block2__brands .swiper-slide {
     width: auto;
   }
-  .block3__offers {
+  .block3__offer {
     grid-template-columns: repeat(3, 1fr);
   }
 }
 @media (max-width: 767px) {
+  .window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: translateX(-100%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000;
+  }
+  .window.is-open {
+    transform: translateX(0);
+  }
   .block1__buttons {
     overflow: hidden;
   }
@@ -353,27 +367,9 @@ footer p:nth-child(3) {
   .block1__header--center {
     display: none;
   }
-  .block3__offer {
-    overflow: hidden;
-    display: block !important;
-  }
-  .block3__offer .swiper-wrapper {
+  .block1__text {
     display: flex;
-    gap: 10px;
-  }
-  .block3__offer .swiper-slide {
-    width: auto;
-    flex-shrink: 0;
-  }
-  .block3__offer--span {
-    border: 0;
-    background: none;
-    cursor: pointer;
-    margin-top: 15px;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-    color: #7E7E82;
+    flex-direction: column;
   }
   .block2 {
     overflow: hidden;
@@ -385,15 +381,17 @@ footer p:nth-child(3) {
   .block2__brands .swiper-slide {
     width: auto;
   }
-  .block3 {
+  .block3__offer {
     overflow: hidden;
   }
   .block3__offer .swiper-wrapper {
-    display: grid;
-    grid-template-columns: repeat(7, 1fr);
+    display: flex;
+    align-items: stretch;
   }
   .block3__offer .swiper-slide {
     width: auto;
+    display: flex;
+    justify-content: center;
   }
   .block3__offer--span {
     display: none;
@@ -411,13 +409,20 @@ footer p:nth-child(3) {
     border-top: 1px solid #EAEAEA;
     gap: 8px;
   }
+  .block4__card-table__row-hidden {
+    display: flex;
+    justify-content: flex-start;
+    align-self: flex-start;
+    text-align: left;
+    color: #7E7E82;
+  }
   .block4__card-table__row-cell {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-start;
+    align-items: center;
+    text-align: left;
+    width: 100%;
     font-size: 13px;
-  }
-  .block4__card-table__row-cell--title {
-    font-weight: 500;
   }
   .block4__card-table__row-cell--action {
     flex-basis: 100%;

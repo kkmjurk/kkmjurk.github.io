@@ -312,6 +312,11 @@ body {
 
                 &-cell {
                     &--title {}
+
+                }
+
+                &-hidden {
+                    display: none;
                 }
 
                 &__btn-order {
@@ -427,8 +432,6 @@ footer {
 
             .swiper-slide {
                 width: auto;
-
-
             }
         }
     }
@@ -436,7 +439,7 @@ footer {
 }
 
 // TABLET STYLES
-@media (max-width: 1119px) {
+@media (max-width: 1119px) and (min-width: 768px) {
     .window {
         position: fixed;
         top: 0;
@@ -474,7 +477,7 @@ footer {
     }
 
     .block3 {
-        &__offers {
+        &__offer {
             grid-template-columns: repeat(3, 1fr);
         }
     }
@@ -482,6 +485,19 @@ footer {
 
 // MOBILE STYLES
 @media (max-width: 767px) {
+    .window {
+        position: fixed;
+        top: 0;
+        left: 0;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease-in-out;
+        z-index: 1000;
+    }
+
+    .window.is-open {
+        transform: translateX(0);
+    }
+
     .block1 {
         &__buttons {
             overflow: hidden;
@@ -496,6 +512,8 @@ footer {
                 width: max-content;
                 flex-shrink: 0;
             }
+
+
         }
 
         &__header {
@@ -503,36 +521,12 @@ footer {
                 display: none;
             }
         }
-    }
 
-    .block3 {
-        &__offer {
-            overflow: hidden;
-            display: block !important;
-
-            .swiper-wrapper {
-                display: flex;
-                gap: 10px;
-            }
-
-            .swiper-slide {
-                width: auto;
-                flex-shrink: 0;
-            }
-        }
-
-        &__offer--span {
-            border: 0;
-            background: none;
-            cursor: pointer;
-            margin-top: 15px;
+        &__text {
             display: flex;
-            align-items: center;
-            gap: 8px;
-            color: $secondary-text-color;
+            flex-direction: column;
         }
     }
-
 
     .block2 {
         overflow: hidden;
@@ -550,24 +544,28 @@ footer {
     }
 
     .block3 {
-        overflow: hidden;
-
         &__offer {
+            overflow: hidden;
 
             .swiper-wrapper {
-                display: grid;
-                grid-template-columns: repeat(7, 1fr);
+                display: flex;
+                
+                align-items: stretch;
             }
 
             .swiper-slide {
                 width: auto;
+                display: flex;
+                justify-content: center;
             }
 
             &--span {
                 display: none;
             }
+
         }
     }
+
 
     .block4 {
         &__card-table {
@@ -583,24 +581,32 @@ footer {
                 padding: 16px !important;
                 border-top: 1px solid $border;
                 gap: 8px;
+
+                &-hidden {
+                    display: flex;
+                    justify-content: flex-start;
+                    align-self: flex-start;
+                    text-align: left;
+                    color: $secondary-text-color;
+                }
             }
 
             &__row-cell {
                 display: flex;
-                justify-content: space-between;
+                justify-content: flex-start;
+                align-items: center;
+                text-align: left;
+                width: 100%;
                 font-size: 13px;
 
-                &--title {
-                    font-weight: 500;
-                }
 
                 &--action {
                     flex-basis: 100%;
                     margin-top: 8px;
                 }
             }
+
+
         }
     }
-
-
 }

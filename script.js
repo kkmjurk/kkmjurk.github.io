@@ -44,147 +44,83 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
 
     const brands = document.querySelector('.block2__brands');
+    if (!brands) return;
+
     const brandsItems = brands.querySelectorAll('.swiper-slide');
     const moreButton = document.querySelector('.block2__brands--more');
+    const moreLabel = moreButton ? moreButton.querySelector('span') : null;
 
     let isExpanded = false;
     let brandsSwiper = null;
 
-
-    // -------------------------
-    // Сколько карточек показывать
-    // -------------------------
-
     function getVisibleCount() {
-
         const width = window.innerWidth;
 
-        if (width >= 1120) {
-            return 4;
-        }
-
-        if (width >= 768) {
-            return 3;
-        }
+        if (width >= 1120) return 4;
+        if (width >= 768) return 3;
 
         return brandsItems.length;
     }
 
-
-    // -------------------------
-    // Показать / скрыть карточки
-    // -------------------------
-
     function updateBrands() {
-
         const visibleCount = getVisibleCount();
 
         brandsItems.forEach((item, index) => {
-
             if (index < visibleCount || isExpanded) {
                 item.classList.remove('is-hidden');
             } else {
                 item.classList.add('is-hidden');
             }
-
         });
 
-
-        // На мобильном кнопка не нужна
         if (window.innerWidth < 768) {
-
-            moreButton.style.display = 'none';
-
+            if (moreButton) moreButton.style.display = 'none';
             return;
         }
 
-
-        // Если все карточки помещаются —
-        // кнопку тоже не показываем
-
         if (brandsItems.length <= visibleCount) {
-
-            moreButton.style.display = 'none';
-
-        } else {
-
+            if (moreButton) moreButton.style.display = 'none';
+        } else if (moreButton) {
             moreButton.style.display = 'flex';
-
-            moreButton.querySelector('span').textContent =
-                isExpanded ? 'Скрыть' : 'Показать все';
-
+            if (moreLabel) {
+                moreLabel.textContent = isExpanded ? 'Скрыть' : 'Показать все';
+            }
         }
-
     }
 
-
-    // -------------------------
-    // Swiper только на мобильном
-    // -------------------------
-
     function updateSwiper() {
-
         const isMobile = window.innerWidth < 768;
 
-
         if (isMobile && !brandsSwiper) {
-
             brandsSwiper = new Swiper('.block2__brands', {
-
                 slidesPerView: 1,
                 spaceBetween: 16,
-
                 pagination: {
                     el: '.block2__brands .swiper-pagination',
                     clickable: true,
                 },
-
             });
-
         }
-
 
         if (!isMobile && brandsSwiper) {
-
             brandsSwiper.destroy(true, true);
-
             brandsSwiper = null;
-
         }
-
     }
 
-
-    // -------------------------
-    // Кнопка "Показать все"
-    // -------------------------
-
-    moreButton.addEventListener('click', () => {
-
-        isExpanded = !isExpanded;
-
-        updateBrands();
-
-    });
-
-
-    // -------------------------
-    // Первый запуск
-    // -------------------------
+    if (moreButton) {
+        moreButton.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            updateBrands();
+        });
+    }
 
     updateSwiper();
     updateBrands();
 
-
-    // -------------------------
-    // При изменении размера
-    // -------------------------
-
     window.addEventListener('resize', () => {
-
         updateSwiper();
         updateBrands();
-
     });
 
 });
@@ -193,150 +129,124 @@ document.addEventListener('DOMContentLoaded', () => {
 document.addEventListener('DOMContentLoaded', () => {
 
     const offers = document.querySelector('.block3__offer');
+    if (!offers) return;
+
     const offersItems = offers.querySelectorAll('.swiper-slide');
     const moreButton = document.querySelector('.block3__offer--span');
+    const moreLabel = moreButton ? moreButton.querySelector('span') : null;
 
     let isExpanded = false;
     let offersSwiper = null;
 
-
-    // -------------------------
-    // Сколько карточек показывать
-    // -------------------------
-
     function getVisibleCount() {
-
         const width = window.innerWidth;
 
-        if (width >= 1120) {
-            return 4;
-        }
-
-        if (width >= 768) {
-            return 3;
-        }
+        if (width >= 1120) return 4;
+        if (width >= 768) return 3;
 
         return offersItems.length;
     }
 
-
-    // -------------------------
-    // Показать / скрыть карточки
-    // -------------------------
-
-    function updateBrands() {
-
+    function updateOffers() {
         const visibleCount = getVisibleCount();
 
         offersItems.forEach((item, index) => {
-
             if (index < visibleCount || isExpanded) {
                 item.classList.remove('is-hidden');
             } else {
                 item.classList.add('is-hidden');
             }
-
         });
 
-
-        // На мобильном кнопка не нужна
         if (window.innerWidth < 768) {
-
-            moreButton.style.display = 'none';
-
+            if (moreButton) moreButton.style.display = 'none';
             return;
         }
 
-
-        // Если все карточки помещаются —
-        // кнопку тоже не показываем
-
         if (offersItems.length <= visibleCount) {
-
-            moreButton.style.display = 'none';
-
-        } else {
-
+            if (moreButton) moreButton.style.display = 'none';
+        } else if (moreButton) {
             moreButton.style.display = 'flex';
-
-            moreButton.querySelector('span').textContent =
-                isExpanded ? 'Скрыть' : 'Показать все';
-
+            if (moreLabel) {
+                moreLabel.textContent = isExpanded ? 'Скрыть' : 'Показать все';
+            }
         }
-
     }
 
-
-    // -------------------------
-    // Swiper только на мобильном
-    // -------------------------
-
     function updateSwiper() {
-
         const isMobile = window.innerWidth < 768;
 
-
         if (isMobile && !offersSwiper) {
-
             offersSwiper = new Swiper('.block3__offer', {
-
-                slidesPerView: 1,
-                spaceBetween: 16,
-
+                slidesPerView: 1.3,
+                spaceBetween: 10,
+                centeredSlides: true,
+                loop: false,
                 pagination: {
                     el: '.block3__offer .swiper-pagination',
                     clickable: true,
                 },
-
             });
-
         }
-
 
         if (!isMobile && offersSwiper) {
-
             offersSwiper.destroy(true, true);
-
             offersSwiper = null;
-
         }
-
     }
 
-
-    // -------------------------
-    // Кнопка "Показать все"
-    // -------------------------
-
-    moreButton.addEventListener('click', () => {
-
-        isExpanded = !isExpanded;
-
-        updateBrands();
-
-    });
-
-
-    // -------------------------
-    // Первый запуск
-    // -------------------------
+    if (moreButton) {
+        moreButton.addEventListener('click', () => {
+            isExpanded = !isExpanded;
+            updateOffers();
+        });
+    }
 
     updateSwiper();
-    updateBrands();
-
-
-    // -------------------------
-    // При изменении размера
-    // -------------------------
+    updateOffers();
 
     window.addEventListener('resize', () => {
-
         updateSwiper();
-        updateBrands();
-
+        updateOffers();
     });
 
 });
+
+// cards block
+
+document.addEventListener('DOMContentLoaded', () => {
+    const cardsContainer = document.querySelector('.block4__card');
+    if (!cardsContainer) return;
+
+    const cardsSlides = cardsContainer.querySelectorAll('.swiper-slide');
+    if (cardsSlides.length === 0) return;
+
+    let cardsSwiper = null;
+
+    function updateCardsSwiper() {
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile && !cardsSwiper) {
+            cardsSwiper = new Swiper(cardsContainer, {
+                slidesPerView: 1.15,
+                spaceBetween: 16,
+                centeredSlides: true,
+                loop: false,
+            });
+        }
+
+        if (!isMobile && cardsSwiper) {
+            cardsSwiper.destroy(true, true);
+            cardsSwiper = null;
+        }
+    }
+
+    updateCardsSwiper();
+    window.addEventListener('resize', updateCardsSwiper);
+});
+
+
+
 
 
 
