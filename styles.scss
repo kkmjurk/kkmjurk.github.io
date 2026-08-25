@@ -286,8 +286,7 @@ body {
             &__header,
             &__row {
                 display: grid;
-                // 1-я колонка занимает все свободное место (1fr), остальные подстраиваются
-                grid-template-columns: 2fr 1fr 1fr auto;
+                grid-template-columns: 2fr 1fr 1fr 128px;
                 align-items: center;
                 gap: 16px;
             }
@@ -298,7 +297,9 @@ body {
                 font-size: 14px;
                 color: $secondary-text-color;
 
-                &-col {}
+                &-col {
+                    width: 128px;
+                }
             }
 
             &__row {
@@ -343,6 +344,7 @@ body {
                     }
 
                 }
+
 
             }
 
@@ -436,6 +438,16 @@ footer {
         }
     }
 
+    // .block3__offer .swiper-wrapper {
+    //     display: grid;
+    //     grid-template-columns: repeat(4, 1fr);
+    //     gap: 20px;
+    // }
+
+    // .block3__offer .swiper-slide {
+    //     width: auto;
+    // }
+
 }
 
 // TABLET STYLES
@@ -476,137 +488,143 @@ footer {
         }
     }
 
-    .block3 {
-        &__offer {
-            grid-template-columns: repeat(3, 1fr);
-        }
-    }
-}
+    .block3 {}
 
-// MOBILE STYLES
-@media (max-width: 767px) {
-    .window {
-        position: fixed;
-        top: 0;
-        left: 0;
-        transform: translateX(-100%);
-        transition: transform 0.3s ease-in-out;
-        z-index: 1000;
-    }
+    //     .block3__offer .swiper-wrapper {
+    //         display: grid;
+    //         grid-template-columns: repeat(3, 1fr);
+    //         gap: 20px;
+    //     }
 
-    .window.is-open {
-        transform: translateX(0);
-    }
+    //     .block3__offer .swiper-slide {
+    //         width: auto;
+    //     }
+    // }
 
-    .block1 {
-        &__buttons {
-            overflow: hidden;
-
-            .swiper-wrapper {
-                display: flex;
-                align-items: center;
-
-            }
-
-            .swiper-slide {
-                width: max-content;
-                flex-shrink: 0;
-            }
-
-
+    // MOBILE STYLES
+    @media (max-width: 767px) {
+        .window {
+            position: fixed;
+            top: 0;
+            left: 0;
+            transform: translateX(-100%);
+            transition: transform 0.3s ease-in-out;
+            z-index: 1000;
         }
 
-        &__header {
-            &--center {
-                display: none;
-            }
+        .window.is-open {
+            transform: translateX(0);
         }
 
-        &__text {
-            display: flex;
-            flex-direction: column;
-        }
-    }
+        .block1 {
+            &__buttons {
+                overflow: hidden;
 
-    .block2 {
-        overflow: hidden;
+                .swiper-wrapper {
+                    display: flex;
+                    align-items: center;
 
-        &__brands {
-            .swiper-wrapper {
-                display: grid;
-                grid-template-columns: repeat(7, 1fr);
+                }
+
+                .swiper-slide {
+                    width: max-content;
+                    flex-shrink: 0;
+                }
+
+
             }
-
-            .swiper-slide {
-                width: auto;
-            }
-        }
-    }
-
-    .block3 {
-        &__offer {
-            overflow: hidden;
-
-            .swiper-wrapper {
-                display: flex;
-                
-                align-items: stretch;
-            }
-
-            .swiper-slide {
-                width: auto;
-                display: flex;
-                justify-content: center;
-            }
-
-            &--span {
-                display: none;
-            }
-
-        }
-    }
-
-
-    .block4 {
-        &__card-table {
-            padding: 0 !important;
 
             &__header {
-                display: none;
+                &--center {
+                    display: none;
+                }
             }
 
-            &__row {
+            &__text {
                 display: flex;
                 flex-direction: column;
-                padding: 16px !important;
-                border-top: 1px solid $border;
-                gap: 8px;
+            }
+        }
 
-                &-hidden {
+        .block2 {
+            overflow: hidden;
+
+            &__brands {
+                .swiper-wrapper {
+                    display: grid;
+                    grid-template-columns: repeat(7, 1fr);
+                }
+
+                .swiper-slide {
+                    width: auto;
+                }
+            }
+        }
+
+        .block3 {
+            &__offer {
+                overflow: hidden;
+
+                .swiper-wrapper {
+                    display: flex;
+
+                    align-items: stretch;
+                }
+
+                .swiper-slide {
+                    width: auto;
+                    display: flex;
+                    justify-content: center;
+                }
+
+                &--span {
+                    display: none;
+                }
+
+            }
+        }
+
+
+        .block4 {
+            &__card-table {
+                padding: 0 !important;
+
+                &__header {
+                    display: none;
+                }
+
+                &__row {
+                    display: flex;
+                    flex-direction: column;
+                    padding: 16px !important;
+                    border-top: 1px solid $border;
+                    gap: 8px;
+
+                    &-hidden {
+                        display: flex;
+                        justify-content: flex-start;
+                        align-self: flex-start;
+                        text-align: left;
+                        color: $secondary-text-color;
+                    }
+                }
+
+                &__row-cell {
                     display: flex;
                     justify-content: flex-start;
-                    align-self: flex-start;
+                    align-items: center;
                     text-align: left;
-                    color: $secondary-text-color;
+                    width: 100%;
+                    font-size: 13px;
+
+
+                    &--action {
+                        flex-basis: 100%;
+                        margin-top: 8px;
+                    }
                 }
+
+
             }
-
-            &__row-cell {
-                display: flex;
-                justify-content: flex-start;
-                align-items: center;
-                text-align: left;
-                width: 100%;
-                font-size: 13px;
-
-
-                &--action {
-                    flex-basis: 100%;
-                    margin-top: 8px;
-                }
-            }
-
-
         }
     }
-}
