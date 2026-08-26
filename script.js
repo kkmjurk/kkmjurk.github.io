@@ -246,6 +246,16 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 
+// Находим ВСЕ кнопки с классом nav-button
+const buttons = document.querySelectorAll('.block4__card-table__row__btn-order');
+
+// Вешаем обработчик клика на каждую кнопку через цикл
+buttons.forEach(button => {
+    button.addEventListener('click', () => {
+        window.open('https://watchbutdonotlearn.github.io', '_blank', 'noopener,noreferrer');
+    });
+});
+
 
 
 
