@@ -14,9 +14,9 @@ menuClose.addEventListener('click', () => {
 
 
 
-const block1Button = document.querySelector('.block1__text--span');
-const block1ButtonText = document.querySelector('.block1__text--span-p');
-const block1MoreText = document.querySelector('.block1__text--p-moreText');
+const block1Button = document.querySelector('.block1__toggle');
+const block1ButtonText = document.querySelector('.block1__toggle-text');
+const block1MoreText = document.querySelector('.block1__more-text');
 
 block1Button.addEventListener('click', () => {
     block1MoreText.classList.toggle('is-visible');
@@ -47,16 +47,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!brands) return;
 
     const brandsItems = brands.querySelectorAll('.swiper-slide');
-    const moreButton = document.querySelector('.block2__brands--more');
+    const moreButton = document.querySelector('.block2__more');
     const moreLabel = moreButton ? moreButton.querySelector('span') : null;
 
     let isExpanded = false;
-    let brandsSwiper = null;
+
 
     function getVisibleCount() {
         const width = window.innerWidth;
 
-        if (width >= 1120) return 4;
+        if (width >= 1366) return 4;
         if (width >= 768) return 3;
 
         return brandsItems.length;
@@ -88,24 +88,15 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function updateSwiper() {
-        const isMobile = window.innerWidth < 768;
-
-        if (isMobile && !brandsSwiper) {
-            brandsSwiper = new Swiper('.block2__brands', {
-                slidesPerView: 1,
-                spaceBetween: 16,
-                pagination: {
-                    el: '.block2__brands .swiper-pagination',
-                    clickable: true,
-                },
-            });
-        }
-
-        if (!isMobile && brandsSwiper) {
-            brandsSwiper.destroy(true, true);
-            brandsSwiper = null;
-        }
+    if (window.innerWidth < 768) {
+        new Swiper('.block2__brands', {
+            slidesPerView: 1,
+            spaceBetween: 16,
+            pagination: {
+                el: '.block2__brands .swiper-pagination',
+                clickable: true,
+            },
+        });
     }
 
     if (moreButton) {
@@ -115,11 +106,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    updateSwiper();
     updateBrands();
 
     window.addEventListener('resize', () => {
-        updateSwiper();
+
         updateBrands();
     });
 
@@ -132,16 +122,16 @@ document.addEventListener('DOMContentLoaded', () => {
     if (!offers) return;
 
     const offersItems = offers.querySelectorAll('.swiper-slide');
-    const moreButton = document.querySelector('.block3__offer--span');
+    const moreButton = document.querySelector('.block3__more');
     const moreLabel = moreButton ? moreButton.querySelector('span') : null;
 
     let isExpanded = false;
-    let offersSwiper = null;
+
 
     function getVisibleCount() {
         const width = window.innerWidth;
 
-        if (width >= 1120) return 4;
+        if (width >= 1366) return 4;
         if (width >= 768) return 3;
 
         return offersItems.length;
@@ -173,26 +163,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    function updateSwiper() {
-        const isMobile = window.innerWidth < 768;
-
-        if (isMobile && !offersSwiper) {
-            offersSwiper = new Swiper('.block3__offer', {
-                slidesPerView: 1.3,
-                spaceBetween: 10,
-                centeredSlides: true,
-                loop: false,
-                pagination: {
-                    el: '.block3__offer .swiper-pagination',
-                    clickable: true,
-                },
-            });
-        }
-
-        if (!isMobile && offersSwiper) {
-            offersSwiper.destroy(true, true);
-            offersSwiper = null;
-        }
+    if (window.innerWidth < 768) {
+        new Swiper('.block3__offer', {
+            slidesPerView: 1.3,
+            spaceBetween: 10,
+            centeredSlides: true,
+            loop: false,
+            pagination: {
+                el: '.block3__offer .swiper-pagination',
+                clickable: true,
+            },
+        });
     }
 
     if (moreButton) {
@@ -202,11 +183,10 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    updateSwiper();
     updateOffers();
 
     window.addEventListener('resize', () => {
-        updateSwiper();
+
         updateOffers();
     });
 
@@ -221,33 +201,19 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardsSlides = cardsContainer.querySelectorAll('.swiper-slide');
     if (cardsSlides.length === 0) return;
 
-    let cardsSwiper = null;
-
-    function updateCardsSwiper() {
-        const isMobile = window.innerWidth < 768;
-
-        if (isMobile && !cardsSwiper) {
-            cardsSwiper = new Swiper(cardsContainer, {
-                slidesPerView: 1.15,
-                spaceBetween: 16,
-                centeredSlides: true,
-                loop: false,
-            });
-        }
-
-        if (!isMobile && cardsSwiper) {
-            cardsSwiper.destroy(true, true);
-            cardsSwiper = null;
-        }
+    if (window.innerWidth < 768) {
+        new Swiper(cardsContainer, {
+            slidesPerView: 1.15,
+            spaceBetween: 16,
+            centeredSlides: true,
+            loop: false,
+        });
     }
-
-    updateCardsSwiper();
-    window.addEventListener('resize', updateCardsSwiper);
 });
 
 
-// Находим ВСЕ кнопки с классом nav-button
-const buttons = document.querySelectorAll('.block4__card-table__row__btn-order');
+// Находим ВСЕ кнопки в блоке 4
+const buttons = document.querySelectorAll('.block4__button');
 
 // Вешаем обработчик клика на каждую кнопку через цикл
 buttons.forEach(button => {

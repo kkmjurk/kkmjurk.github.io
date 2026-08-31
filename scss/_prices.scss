@@ -1,0 +1,148 @@
+.block4 {
+    &__header {
+        text-transform: uppercase;
+        color: $secondary-text-color;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    &__card {
+        background-color: $white;
+        padding: 20px;
+    }
+
+    &__table-header,
+    &__table-row {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr 128px;
+        align-items: center;
+        gap: 16px;
+    }
+
+    &__table-header {
+        padding: 20px;
+        padding-bottom: 16px;
+        font-size: 14px;
+        color: $secondary-text-color;
+    }
+
+    &__table-column {
+        width: 128px;
+    }
+
+    &__table-row {
+        background-color: $white;
+        padding: 20px;
+        border-top: 1px solid $border;
+        color: $black;
+        font-size: 15px;
+    }
+
+    &__row-label {
+        display: none;
+    }
+
+    &__button {
+        background-color: $pink;
+        color: #ffffff;
+        border: none;
+        border-radius: $radius-btn;
+        padding: 10px 24px;
+        justify-content: space-between;
+        font-size: 12px;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        cursor: pointer;
+        transition: background-color 0.2s ease, transform 0.1s ease;
+
+        &:hover {
+            background-color: lighten($pink, 5%);
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+    }
+
+    &__footer {
+        position: relative;
+        margin-bottom: 50px;
+
+        :nth-child(2) {
+            font-weight: 500;
+            font-size: 16px;
+        }
+
+        :nth-child(3) {
+            position: absolute;
+        }
+    }
+}
+
+@media (min-width: 1366px) {
+    .block4__card .swiper-wrapper {
+        display: block;
+        height: auto;
+    }
+
+    .block4__card .swiper-slide {
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (max-width: 1365px) and (min-width: 768px) {
+    .block4__card .swiper-wrapper {
+        display: block;
+        height: auto;
+    }
+
+    .block4__card .swiper-slide {
+        width: auto;
+        height: auto;
+    }
+}
+
+@media (max-width: 767px) {
+    .block4 {
+        &__card {
+            padding: 0 !important;
+        }
+
+        &__table-header {
+            display: none;
+        }
+
+        &__table-row {
+            display: flex;
+            flex-direction: column;
+            padding: 16px !important;
+            border-top: 1px solid $border;
+            gap: 8px;
+        }
+
+        &__row-label {
+            display: flex;
+            justify-content: flex-start;
+            align-self: flex-start;
+            text-align: left;
+            color: $secondary-text-color;
+        }
+
+        &__cell {
+            display: flex;
+            justify-content: flex-start;
+            align-items: center;
+            text-align: left;
+            width: 100%;
+            font-size: 13px;
+
+            &--action {
+                flex-basis: 100%;
+                margin-top: 8px;
+            }
+        }
+    }
+}
