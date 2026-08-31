@@ -7,7 +7,7 @@
     }
 
     &__card {
-        background-color: $white;
+        background-color: $body;
         padding: 20px;
     }
 
@@ -43,13 +43,15 @@
     }
 
     &__button {
+        display: flex;
         background-color: $pink;
         color: #ffffff;
         border: none;
         border-radius: $radius-btn;
         padding: 10px 24px;
         justify-content: space-between;
-        font-size: 12px;
+        gap: 15px;
+        font-size: 10px;
         font-weight: 700;
         text-transform: uppercase;
         letter-spacing: 0.5px;

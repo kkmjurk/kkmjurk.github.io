@@ -498,7 +498,7 @@ ul {
   margin-bottom: 20px;
 }
 .block4__card {
-  background-color: #ffffff;
+  background-color: #f8f8f8;
   padding: 20px;
 }
 .block4__table-header, .block4__table-row {
@@ -527,13 +527,15 @@ ul {
   display: none;
 }
 .block4__button {
+  display: flex;
   background-color: #FF3E79;
   color: #ffffff;
   border: none;
   border-radius: 30px;
   padding: 10px 24px;
   justify-content: space-between;
-  font-size: 12px;
+  gap: 15px;
+  font-size: 10px;
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.5px;
