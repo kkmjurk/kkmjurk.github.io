@@ -34,6 +34,7 @@
 
     &__nav {
         padding-top: 30px;
+        overflow-x: auto;
     }
 
     &__nav-list {
@@ -56,12 +57,12 @@
         color: $black;
         padding: 6px 0;
 
-        &.is-active {
+        &--active {
             color: $secondary-text-color;
             font-weight: 500;
         }
 
-        &.is-active::before {
+        &--active::before {
             content: '';
             position: absolute;
             left: -20px;
@@ -121,13 +122,21 @@
         color: $secondary-text-color;
         text-transform: uppercase;
 
-        &.is-active {
+        &--active {
             color: $black;
         }
     }
 }
 
 @media (min-width: 1366px) {
+    .page-content>.window__nav {
+        position: fixed;
+        top: 90px;
+        left: 20px;
+        width: 240px;
+        z-index: 1001;
+    }
+
     .window {
         position: fixed;
         top: 0;
@@ -140,6 +149,20 @@
 }
 
 @media (max-width: 1365px) and (min-width: 768px) {
+    .page-content>.window__nav {
+        padding-top: 0;
+    }
+
+    .page-content>.window__nav .window__nav-list {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .page-content>.window__nav .window__nav-list .window__nav-button {
+        width: max-content;
+        white-space: nowrap;
+    }
+
     .window {
         position: fixed;
         top: 0;
@@ -149,12 +172,26 @@
         z-index: 1000;
     }
 
-    .window.is-open {
+    .window.window--open {
         transform: translateX(0);
     }
 }
 
 @media (max-width: 767px) {
+    .page-content>.window__nav {
+        padding-top: 0;
+    }
+
+    .page-content>.window__nav .window__nav-list {
+        flex-direction: row;
+        gap: 10px;
+    }
+
+    .page-content>.window__nav .window__nav-list .window__nav-button {
+        width: max-content;
+        white-space: nowrap;
+    }
+
     .window {
         position: fixed;
         top: 0;
@@ -164,7 +201,7 @@
         z-index: 1000;
     }
 
-    .window.is-open {
+    .window.window--open {
         transform: translateX(0);
     }
 }

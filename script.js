@@ -4,11 +4,11 @@ const menuClose = document.getElementById('menuClose'); // кнопка "зак�
 const sidebar = document.querySelector('.window'); // само выезжающее меню
 
 menuToggle.addEventListener('click', () => {
-    sidebar.classList.add('is-open');
+    sidebar.classList.add('window--open');
 });
 
 menuClose.addEventListener('click', () => {
-    sidebar.classList.remove('is-open');
+    sidebar.classList.remove('window--open');
 });
 
 
@@ -19,24 +19,21 @@ const block1ButtonText = document.querySelector('.block1__toggle-text');
 const block1MoreText = document.querySelector('.block1__more-text');
 
 block1Button.addEventListener('click', () => {
-    block1MoreText.classList.toggle('is-visible');
+    block1MoreText.classList.toggle('block1__more-text--visible');
 
     // Состояние читаем из самого DOM (класс уже переключили строкой выше),
     // а не из отдельной переменной isOpen, которой нигде не было объявлено.
-    const isOpen = block1MoreText.classList.contains('is-visible');
+    const isOpen = block1MoreText.classList.contains('block1__more-text--visible');
     block1ButtonText.textContent = isOpen ? 'Скрыть' : 'Читать дальше';
 });
 
 document.addEventListener('DOMContentLoaded', () => {
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-
-    if (isMobile) {
-        const buttonsSwiper = new Swiper('.block1__buttons', {
+    if (window.matchMedia('(max-width: 767px)').matches) {
+        new Swiper('.block1__buttons', {
             slidesPerView: 'auto',
             spaceBetween: 16,
             freeMode: true,
         });
-
     }
 });
 
@@ -67,9 +64,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         brandsItems.forEach((item, index) => {
             if (index < visibleCount || isExpanded) {
-                item.classList.remove('is-hidden');
+                item.classList.remove('block2__slide--hidden');
             } else {
-                item.classList.add('is-hidden');
+                item.classList.add('block2__slide--hidden');
             }
         });
 
@@ -142,9 +139,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
         offersItems.forEach((item, index) => {
             if (index < visibleCount || isExpanded) {
-                item.classList.remove('is-hidden');
+                item.classList.remove('block3__slide--hidden');
             } else {
-                item.classList.add('is-hidden');
+                item.classList.add('block3__slide--hidden');
             }
         });
 

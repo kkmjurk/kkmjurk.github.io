@@ -29,7 +29,8 @@
         <nav class="window__nav" aria-label="Основная навигация">
             <ul class="window__nav-list">
                 <li class="window__nav-item">
-                    <button class="window__nav-button is-active" type="button">Ремонтируемые бренды</button>
+                    <button class="window__nav-button window__nav-button--active" type="button">Ремонтируемые
+                        бренды</button>
                 </li>
                 <li class="window__nav-item">
                     <button class="window__nav-button" type="button">Дополнительные услуги</button>
@@ -63,14 +64,15 @@
             <a class="window__phone" href="tel:+78008908900">8 800 890 8900</a>
 
             <div class="window__lang" aria-label="Выбор языка">
-                <button class="window__lang-button is-active" type="button" aria-pressed="true">RU</button>
+                <button class="window__lang-button window__lang-button--active" type="button"
+                    aria-pressed="true">RU</button>
                 <button class="window__lang-button" type="button" aria-pressed="false">EN</button>
                 <button class="window__lang-button" type="button" aria-pressed="false">CH</button>
             </div>
         </footer>
     </aside>
 
-    <div class="page-content">
+    <main class="page-content">
         <div class="block1">
             <header class="block1__header">
                 <div class="block1__header-left">
@@ -152,7 +154,7 @@
 
 
         <div class="block2">
-            <div class="block2__header">Ремонт техники различных брендов</div>
+            <h2 class="block2__header">Ремонт техники различных брендов</h2>
 
             <div class="block2__brands swiper">
                 <div class="block2__brands-wrapper swiper-wrapper">
@@ -202,189 +204,196 @@
                         <div class="block2__item">
                             <img src="/pics/view.png" alt="viewsonic">
                             <img src="/icons/go.svg" alt="go">
+                            </,div>
                         </div>
                     </div>
+
+                    <div class="swiper-pagination"></div>
                 </div>
 
-                <div class="swiper-pagination"></div>
+                <button class="block2__more" type="button" aria-expanded="false">
+                    <img src="/icons/expand.svg" alt="" aria-hidden="true">
+                    <span>Показать все</span>
+                </button>
             </div>
 
-            <button class="block2__more" type="button" aria-expanded="false">
-                <img src="/icons/expand.svg" alt="" aria-hidden="true">
-                <span>Показать все</span>
-            </button>
-        </div>
 
+            <div class="block3">
+                <h2 class="block3__header">Ремонт техники различных брендов</h2>
 
-        <div class="block3">
-            <div class="block3__header">Ремонт техники различных брендов</div>
-
-            <div class="block3__offer swiper">
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="block3__item">
-                            <div class="block3__text">Ремонт ноутбуков</div>
-                            <img src="/icons/go.svg" alt="go">
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="block3__item">
-                            <div class="block3__text">Ремонт планшетов</div>
-                            <img src="/icons/go.svg" alt="go">
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="block3__item">
-                            <div class="block3__text">Ремонт ПК</div>
-                            <img src="/icons/go.svg" alt="go">
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="block3__item">
-                            <div class="block3__text">Ремонт мониторов</div>
-                            <img src="/icons/go.svg" alt="go">
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="block3__item">
-                            <div class="block3__text">Ремонт головы</div>
-                            <img src="/icons/go.svg" alt="go">
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="block3__item">
-                            <div class="block3__text">Ремонт какой то</div>
-                            <img src="/icons/go.svg" alt="go">
-                        </div>
-                    </div>
-
-                    <div class="swiper-slide">
-                        <div class="block3__item">
-                            <div class="block3__text">Ремонт вроде</div>
-                            <img src="/icons/go.svg" alt="go">
-                        </div>
-                    </div>
-                </div>
-
-                <div class="swiper-pagination"></div>
-            </div>
-            <button class="block3__more" type="button" aria-expanded="false">
-                <img src="/icons/expand.svg" alt="" aria-hidden="true">
-                <span>Показать все</span>
-            </button>
-        </div>
-
-
-        <div class="block4">
-            <div class="block4__header">Цены на услуги</div>
-
-            <div class="block4__card swiper">
-                <div class="block4__table-header">
-                    <span class="block4__table-column">Ремонтные услуги</span>
-                    <span class="block4__table-column">Цена</span>
-                    <span class="block4__table-column">Срок</span>
-                    <span class="block4__table-column"></span>
-                </div>
-
-                <div class="swiper-wrapper">
-                    <div class="swiper-slide">
-                        <div class="block4__table-row">
-                            <div class="block4__row-label">Ремонтные услуги</div>
-                            <div class="block4__cell block4__cell--title">Диагностика</div>
-                            <div class="block4__row-label">Цена</div>
-                            <div class="block4__cell">Бесплатно</div>
-                            <div class="block4__row-label">Срок</div>
-                            <div class="block4__cell">30 мин</div>
-                            <div class="block4__cell block4__cell--action">
-                                <button class="block4__button">Заказать <img src="/icons/go white.svg" alt=""></button>
+                <div class="block3__offer swiper">
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="block3__item">
+                                <div class="block3__text">Ремонт ноутбуков</div>
+                                <img src="/icons/go.svg" alt="go">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="swiper-slide">
-                        <div class="block4__table-row">
-                            <div class="block4__row-label">Ремонтные услуги</div>
-                            <div class="block4__cell block4__cell--title">Замена дисплея</div>
-                            <div class="block4__row-label">Цена</div>
-                            <div class="block4__cell">1000</div>
-                            <div class="block4__row-label">Срок</div>
-                            <div class="block4__cell">30-120 мин</div>
-                            <div class="block4__cell block4__cell--action">
-                                <button class="block4__button">Заказать <img src="/icons/go white.svg" alt=""></button>
+                        <div class="swiper-slide">
+                            <div class="block3__item">
+                                <div class="block3__text">Ремонт планшетов</div>
+                                <img src="/icons/go.svg" alt="go">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="swiper-slide">
-                        <div class="block4__table-row">
-                            <div class="block4__row-label">Ремонтные услуги</div>
-                            <div class="block4__cell block4__cell--title">Замена полифонического динамика</div>
-                            <div class="block4__row-label">Цена</div>
-                            <div class="block4__cell">1000</div>
-                            <div class="block4__row-label">Срок</div>
-                            <div class="block4__cell">30-120 мин</div>
-                            <div class="block4__cell block4__cell--action">
-                                <button class="block4__button">Заказать <img src="/icons/go white.svg" alt=""></button>
+                        <div class="swiper-slide">
+                            <div class="block3__item">
+                                <div class="block3__text">Ремонт ПК</div>
+                                <img src="/icons/go.svg" alt="go">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="swiper-slide">
-                        <div class="block4__table-row">
-                            <div class="block4__row-label">Ремонтные услуги</div>
-                            <div class="block4__cell block4__cell--title">Тестирование с выдачей технического заключения
-                            </div>
-                            <div class="block4__row-label">Цена</div>
-                            <div class="block4__cell">1000</div>
-                            <div class="block4__row-label">Срок</div>
-                            <div class="block4__cell">30-120 мин</div>
-                            <div class="block4__cell block4__cell--action">
-                                <button class="block4__button">Заказать <img src="/icons/go white.svg" alt=""></button>
+                        <div class="swiper-slide">
+                            <div class="block3__item">
+                                <div class="block3__text">Ремонт мониторов</div>
+                                <img src="/icons/go.svg" alt="go">
                             </div>
                         </div>
-                    </div>
 
-                    <div class="swiper-slide">
-                        <div class="block4__table-row">
-                            <div class="block4__row-label">Ремонтные услуги</div>
-                            <div class="block4__cell block4__cell--title">Замена программного обеспечения</div>
-                            <div class="block4__row-label">Цена</div>
-                            <div class="block4__cell">1000</div>
-                            <div class="block4__row-label">Срок</div>
-                            <div class="block4__cell">30-120 мин</div>
-                            <div class="block4__cell block4__cell--action">
-                                <button class="block4__button">Заказать <img src="/icons/go white.svg" alt=""></button>
+                        <div class="swiper-slide">
+                            <div class="block3__item">
+                                <div class="block3__text">Ремонт головы</div>
+                                <img src="/icons/go.svg" alt="go">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="block3__item">
+                                <div class="block3__text">Ремонт какой то</div>
+                                <img src="/icons/go.svg" alt="go">
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="block3__item">
+                                <div class="block3__text">Ремонт вроде</div>
+                                <img src="/icons/go.svg" alt="go">
                             </div>
                         </div>
                     </div>
 
                     <div class="swiper-pagination"></div>
                 </div>
+                <button class="block3__more" type="button" aria-expanded="false">
+                    <img src="/icons/expand.svg" alt="" aria-hidden="true">
+                    <span>Показать все</span>
+                </button>
             </div>
 
-            <div class="block4__footer">
-                <p class="block4__footer-note">
-                    Все цены указаны с учетом НДС. Стоимость ремонта указана <br>
-                    на единичную услугу. Для получения коммерческого <br>
-                    предложения на постоянное обслуживание, оставьте заявку.
-                </p>
-                <a href="#" class="block4__footer-link">Получить коммерческое предложение <img src="/icons/Line.svg"
-                        alt="line"></a>
+
+            <div class="block4">
+                <h2 class="block4__header">Цены на услуги</h2>
+
+                <div class="block4__card swiper">
+                    <div class="block4__table-header">
+                        <span class="block4__table-column">Ремонтные услуги</span>
+                        <span class="block4__table-column">Цена</span>
+                        <span class="block4__table-column">Срок</span>
+                        <span class="block4__table-column"></span>
+                    </div>
+
+                    <div class="swiper-wrapper">
+                        <div class="swiper-slide">
+                            <div class="block4__table-row">
+                                <div class="block4__row-label">Ремонтные услуги</div>
+                                <div class="block4__cell block4__cell--title">Диагностика</div>
+                                <div class="block4__row-label">Цена</div>
+                                <div class="block4__cell">Бесплатно</div>
+                                <div class="block4__row-label">Срок</div>
+                                <div class="block4__cell">30 мин</div>
+                                <div class="block4__cell block4__cell--action">
+                                    <button class="block4__button">Заказать <img src="/icons/go white.svg"
+                                            alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="block4__table-row">
+                                <div class="block4__row-label">Ремонтные услуги</div>
+                                <div class="block4__cell block4__cell--title">Замена дисплея</div>
+                                <div class="block4__row-label">Цена</div>
+                                <div class="block4__cell">1000</div>
+                                <div class="block4__row-label">Срок</div>
+                                <div class="block4__cell">30-120 мин</div>
+                                <div class="block4__cell block4__cell--action">
+                                    <button class="block4__button">Заказать <img src="/icons/go white.svg"
+                                            alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="block4__table-row">
+                                <div class="block4__row-label">Ремонтные услуги</div>
+                                <div class="block4__cell block4__cell--title">Замена полифонического динамика</div>
+                                <div class="block4__row-label">Цена</div>
+                                <div class="block4__cell">1000</div>
+                                <div class="block4__row-label">Срок</div>
+                                <div class="block4__cell">30-120 мин</div>
+                                <div class="block4__cell block4__cell--action">
+                                    <button class="block4__button">Заказать <img src="/icons/go white.svg"
+                                            alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="block4__table-row">
+                                <div class="block4__row-label">Ремонтные услуги</div>
+                                <div class="block4__cell block4__cell--title">Тестирование с выдачей технического
+                                    заключения
+                                </div>
+                                <div class="block4__row-label">Цена</div>
+                                <div class="block4__cell">1000</div>
+                                <div class="block4__row-label">Срок</div>
+                                <div class="block4__cell">30-120 мин</div>
+                                <div class="block4__cell block4__cell--action">
+                                    <button class="block4__button">Заказать <img src="/icons/go white.svg"
+                                            alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-slide">
+                            <div class="block4__table-row">
+                                <div class="block4__row-label">Ремонтные услуги</div>
+                                <div class="block4__cell block4__cell--title">Замена программного обеспечения</div>
+                                <div class="block4__row-label">Цена</div>
+                                <div class="block4__cell">1000</div>
+                                <div class="block4__row-label">Срок</div>
+                                <div class="block4__cell">30-120 мин</div>
+                                <div class="block4__cell block4__cell--action">
+                                    <button class="block4__button">Заказать <img src="/icons/go white.svg"
+                                            alt=""></button>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="swiper-pagination"></div>
+                    </div>
+                </div>
+
+                <div class="block4__footer">
+                    <p class="block4__footer-note">
+                        Все цены указаны с учетом НДС. Стоимость ремонта указана <br>
+                        на единичную услугу. Для получения коммерческого <br>
+                        предложения на постоянное обслуживание, оставьте заявку.
+                    </p>
+                    <a href="#" class="block4__footer-link">Получить коммерческое предложение <img src="/icons/Line.svg"
+                            alt="line"></a>
+                </div>
             </div>
         </div>
-    </div>
 
-    <footer>
-        <p>© 2019 CPS <br>
-            Разработано командой Apesong </p>
-        <p>Политика конфиденциальности</p>
-        <p>Информация, размещенная на данной странице, <br> не является публичной офертой</p>
-    </footer>
+        <footer>
+            <p>© 2019 CPS <br>
+                Разработано командой Apesong </p>
+            <p>Политика конфиденциальности</p>
+            <p>Информация, размещенная на данной странице, <br> не является публичной офертой</p>
+        </footer>
+    </main>
 
 </body>
 

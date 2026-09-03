@@ -17,6 +17,13 @@ body {
     line-height: 1.5;
 }
 
+h2 {
+    margin: 0;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 1.2;
+}
+
 img {
     display: block;
     max-width: 100%;
@@ -53,4 +60,10 @@ ul {
         max-width: 1120px;
         margin: 0 auto;
     }
+}
+
+.page-content>footer {
+    width: 100%;
+    max-width: 1120px;
+    margin: 0 auto;
 }

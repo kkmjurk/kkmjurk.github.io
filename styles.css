@@ -38,6 +38,13 @@ body {
   line-height: 1.5;
 }
 
+h2 {
+  margin: 0;
+  font-weight: 400;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
 img {
   display: block;
   max-width: 100%;
@@ -74,6 +81,12 @@ ul {
     margin: 0 auto;
   }
 }
+.page-content > footer {
+  width: 100%;
+  max-width: 1120px;
+  margin: 0 auto;
+}
+
 .window {
   display: flex;
   flex-direction: column;
@@ -104,6 +117,7 @@ ul {
 }
 .window__nav {
   padding-top: 30px;
+  overflow-x: auto;
 }
 .window__nav-list {
   display: flex;
@@ -123,11 +137,11 @@ ul {
   color: #000000;
   padding: 6px 0;
 }
-.window__nav-button.is-active {
+.window__nav-button--active {
   color: #7E7E82;
   font-weight: 500;
 }
-.window__nav-button.is-active::before {
+.window__nav-button--active::before {
   content: "";
   position: absolute;
   left: -20px;
@@ -178,11 +192,18 @@ ul {
   color: #7E7E82;
   text-transform: uppercase;
 }
-.window__lang-button.is-active {
+.window__lang-button--active {
   color: #000000;
 }
 
 @media (min-width: 1366px) {
+  .page-content > .window__nav {
+    position: fixed;
+    top: 90px;
+    left: 20px;
+    width: 240px;
+    z-index: 1001;
+  }
   .window {
     position: fixed;
     top: 0;
@@ -193,6 +214,18 @@ ul {
   }
 }
 @media (max-width: 1365px) and (min-width: 768px) {
+  .page-content > .window__nav {
+    padding-top: 0;
+  }
+  .page-content > .window__nav .window__nav-list {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .page-content > .window__nav .window__nav-list .window__nav-button {
+    width: -moz-max-content;
+    width: max-content;
+    white-space: nowrap;
+  }
   .window {
     position: fixed;
     top: 0;
@@ -201,11 +234,23 @@ ul {
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
   }
-  .window.is-open {
+  .window.window--open {
     transform: translateX(0);
   }
 }
 @media (max-width: 767px) {
+  .page-content > .window__nav {
+    padding-top: 0;
+  }
+  .page-content > .window__nav .window__nav-list {
+    flex-direction: row;
+    gap: 10px;
+  }
+  .page-content > .window__nav .window__nav-list .window__nav-button {
+    width: -moz-max-content;
+    width: max-content;
+    white-space: nowrap;
+  }
   .window {
     position: fixed;
     top: 0;
@@ -214,7 +259,7 @@ ul {
     transition: transform 0.3s ease-in-out;
     z-index: 1000;
   }
-  .window.is-open {
+  .window.window--open {
     transform: translateX(0);
   }
 }
@@ -300,7 +345,7 @@ ul {
 .block1__more-text {
   display: none;
 }
-.block1__more-text.is-visible {
+.block1__more-text--visible {
   display: block;
 }
 .block1__toggle {
@@ -371,7 +416,7 @@ ul {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.block2__brands .swiper-slide.is-hidden {
+.block2__brands .swiper-slide.block2__slide--hidden {
   display: none;
 }
 .block2__item {
@@ -434,7 +479,7 @@ ul {
   margin-top: 20px;
   margin-bottom: 20px;
 }
-.block3__offer .swiper-slide.is-hidden {
+.block3__offer .swiper-slide.block3__slide--hidden {
   display: none;
 }
 .block3__item {
