@@ -1,10 +1,15 @@
+import { formatDistanceToNow } from 'date-fns'
+
 function Task({ id,
     description,
-    completed,
-    editing,
+    completed = false,
+    editing = false,
+    createdAt = new Date(),
     onToggleTask,
     onDeleteTask,
-    onEditTask, }) {
+    onEditTask,
+    onSaveTask
+}) {
 
     function handleKeyDown(event) {
         if (event.key === 'Enter') {
@@ -23,6 +28,9 @@ function Task({ id,
 
                 <label>
                     <span className="description">{description}</span>
+                    <span className="created">
+                        created {formatDistanceToNow(createdAt, { addSuffix: true })}
+                    </span>
                 </label>
 
                 <button

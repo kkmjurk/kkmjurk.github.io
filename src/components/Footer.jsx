@@ -1,8 +1,11 @@
-function Footer() {
+function Footer({
+    activeTasksCount = 0,
+    onClearCompleted = () => { },
+}) {
     return (
         <footer className="footer">
             <span className="todo-count">
-                <strong>2</strong> items left
+                <strong>{activeTasksCount}</strong> items left
             </span>
 
             <ul className="filters">
@@ -17,7 +20,10 @@ function Footer() {
                 </li>
             </ul>
 
-            <button className="clear-completed">
+            <button
+                className="clear-completed"
+                onClick={onClearCompleted}
+            >
                 Clear completed
             </button>
         </footer>

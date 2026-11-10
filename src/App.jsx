@@ -3,32 +3,42 @@ import TaskList from './components/TaskList.jsx'
 import NewTaskForm from './components/NewTaskForm.jsx'
 import Footer from './components/Footer.jsx'
 import TasksFilter from './components/TasksFilter.jsx'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 
 function App() {
-  const [tasks, setTasks] = useState([
-    {
-      id: 1,
-      description: 'Completed task',
-      completed: true,
-      editing: false,
-      createdAt: new Date(),
-    },
-    {
-      id: 2,
-      description: 'Editing task',
-      completed: false,
-      editing: true,
-      createdAt: new Date(),
-    },
-    {
-      id: 3,
-      description: 'Active task',
-      completed: false,
-      editing: false,
-      createdAt: new Date(),
-    },
-  ])
+  const [tasks, setTasks] = useState([])
+  const [filter, setFilter] = useState('All')
+
+  const filteredTasks = tasks.filter((task) => {
+    if (filter === 'Active') {
+      return !task.completed
+    }
+
+    if (filter === 'Completed') {
+      return task.completed
+    }
+
+    return true
+  })
+
+  const activeTasksCount = tasks.filter(
+    (task) => !task.completed
+  ).length
+
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/todos')
+      .then((response) => response.json())
+      .then((data) => {
+        setTasks(data.map((task) => ({
+          id: task.id,
+          description: task.title,
+          completed: task.completed,
+          editing: false,
+          createdAt: new Date(),
+        })))
+      })
+  }, [])
 
   function handleAddTask(description) {
     const newTask = {
@@ -55,6 +65,12 @@ function App() {
   function handleDeleteTask(id) {
     setTasks((prevTasks) =>
       prevTasks.filter((task) => task.id !== id)
+    )
+  }
+
+  function handleClearCompleted() {
+    setTasks((prevTasks) =>
+      prevTasks.filter((task) => !task.completed)
     )
   }
 
@@ -92,7 +108,7 @@ function App() {
 
       <section className="main">
         <TaskList
-          tasks={tasks}
+          tasks={filteredTasks}
           onToggleTask={handleToggleTask}
           onDeleteTask={handleDeleteTask}
           onEditTask={handleEditTask}
@@ -100,9 +116,15 @@ function App() {
         />
 
 
-        <TasksFilter />
+        <TasksFilter
+          filter={filter}
+          onFilterChange={setFilter}
+        />
 
-        <Footer />
+        <Footer
+          activeTasksCount={activeTasksCount}
+          onClearCompleted={handleClearCompleted}
+        />
       </section>
     </section>
   )

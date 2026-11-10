@@ -1,7 +1,7 @@
 import Task from './Task'
 
 function TaskList({
-    tasks,
+    tasks = [],
     onToggleTask,
     onDeleteTask,
     onEditTask,
@@ -21,6 +21,7 @@ function TaskList({
                     onDeleteTask={onDeleteTask}
                     onEditTask={onEditTask}
                     onSaveTask={onSaveTask}
+                    createdAt={task.createdAt}
                 />
             ))}
         </ul>
