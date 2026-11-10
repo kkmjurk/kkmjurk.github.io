@@ -42,12 +42,62 @@ function App() {
     setTasks((prevTasks) => [...prevTasks, newTask])
   }
 
+  function handleToggleTask(id) {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id
+          ? { ...task, completed: !task.completed }
+          : task
+      )
+    )
+  }
+
+  function handleDeleteTask(id) {
+    setTasks((prevTasks) =>
+      prevTasks.filter((task) => task.id !== id)
+    )
+  }
+
+  function handleEditTask(id) {
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id
+          ? { ...task, editing: true }
+          : task
+      )
+    )
+  }
+
+  function handleSaveTask(id, newDescription) {
+    if (newDescription.trim() === '') {
+      return
+    }
+
+    setTasks((prevTasks) =>
+      prevTasks.map((task) =>
+        task.id === id
+          ? {
+            ...task,
+            description: newDescription.trim(),
+            editing: false,
+          }
+          : task
+      )
+    )
+  }
+
   return (
     <section className="todoapp">
       <NewTaskForm onAddTask={handleAddTask} />
 
       <section className="main">
-        <TaskList tasks={tasks} />
+        <TaskList
+          tasks={tasks}
+          onToggleTask={handleToggleTask}
+          onDeleteTask={handleDeleteTask}
+          onEditTask={handleEditTask}
+          onSaveTask={handleSaveTask}
+        />
 
 
         <TasksFilter />

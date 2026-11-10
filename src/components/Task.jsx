@@ -1,4 +1,16 @@
-function Task({ description, completed, editing }) {
+function Task({ id,
+    description,
+    completed,
+    editing,
+    onToggleTask,
+    onDeleteTask,
+    onEditTask, }) {
+
+    function handleKeyDown(event) {
+        if (event.key === 'Enter') {
+            onSaveTask(id, event.target.value)
+        }
+    }
     return (
         <li className={completed ? 'completed' : editing ? 'editing' : ''}>
             <div className="view">
@@ -6,14 +18,21 @@ function Task({ description, completed, editing }) {
                     className="toggle"
                     type="checkbox"
                     defaultChecked={completed}
+                    onChange={() => onToggleTask(id)}
                 />
 
                 <label>
                     <span className="description">{description}</span>
                 </label>
 
-                <button className="icon icon-edit"></button>
-                <button className="icon icon-destroy"></button>
+                <button
+                    className="icon icon-edit"
+                    onClick={() => onEditTask(id)}
+                ></button>
+                <button
+                    className="icon icon-destroy"
+                    onClick={() => onDeleteTask(id)}
+                ></button>
             </div>
 
             {editing && (
@@ -21,6 +40,7 @@ function Task({ description, completed, editing }) {
                     className="edit"
                     type="text"
                     defaultValue={description}
+                    onKeyDown={handleKeyDown}
                 />
             )}
         </li>
