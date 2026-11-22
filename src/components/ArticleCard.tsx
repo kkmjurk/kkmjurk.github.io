@@ -1,4 +1,7 @@
-import { Link } from 'react-router-dom'
+import { useState } from 'react'
+import { Link, useNavigate } from 'react-router-dom'
+import { useAuth } from '../context/useAuth'
+import { favoriteArticle, unfavoriteArticle } from '../services/articleService'
 import type { ArticlePreview } from '../types/article'
 import './ArticleCard.css'
 
@@ -7,6 +10,39 @@ interface ArticleCardProps {
 }
 
 function ArticleCard({ article }: ArticleCardProps) {
+  const { user } = useAuth()
+  const navigate = useNavigate()
+
+  const [favorited, setFavorited] = useState(article.favorited)
+  const [favoritesCount, setFavoritesCount] = useState(article.favoritesCount)
+  const [isLoading, setIsLoading] = useState(false)
+  const [error, setError] = useState('')
+
+  async function handleFavorite() {
+    if (!user) {
+      navigate('/sign-in')
+      return
+    }
+
+    if (isLoading) return
+
+    try {
+      setIsLoading(true)
+      setError('')
+
+      const response = favorited
+        ? await unfavoriteArticle(article.slug, user.token)
+        : await favoriteArticle(article.slug, user.token)
+
+      setFavorited(response.article.favorited)
+      setFavoritesCount(response.article.favoritesCount)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Failed to update like.')
+    } finally {
+      setIsLoading(false)
+    }
+  }
+
   return (
     <article className="article-card">
       <div className="article-card__content">
@@ -39,15 +75,23 @@ function ArticleCard({ article }: ArticleCardProps) {
         <span className="article-card__date">
           {new Date(article.createdAt).toLocaleDateString()}
         </span>
+
+        {error && (
+          <p className="article-card__error" role="alert">
+            {error}
+          </p>
+        )}
       </div>
 
       <button
-        className="article-card__like"
+        className={`article-card__like ${favorited ? 'article-card__like--active' : ''}`}
         type="button"
-        disabled
-        aria-label="Likes are unavailable without authentication"
+        onClick={handleFavorite}
+        disabled={isLoading}
+        aria-label={favorited ? 'Remove like' : 'Like article'}
+        aria-pressed={favorited}
       >
-        ♥ {article.favoritesCount}
+        {favorited ? '♥' : '♡'} {favoritesCount}
       </button>
     </article>
   )
