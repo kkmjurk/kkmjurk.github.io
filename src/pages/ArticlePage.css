@@ -80,3 +80,45 @@
   cursor: not-allowed;
   opacity: 0.8;
 }
+
+.article-page__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+.article-page__edit,
+.article-page__delete {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px 16px;
+  border: 1px solid transparent;
+  border-radius: 4px;
+  font: inherit;
+  font-size: 14px;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.article-page__edit {
+  color: #5cb85c;
+  border-color: #5cb85c;
+  background: #fff;
+}
+
+.article-page__delete {
+  color: #b85c5c;
+  border-color: #b85c5c;
+  background: #fff;
+}
+
+.article-page__edit:hover {
+  color: #fff;
+  background: #5cb85c;
+}
+
+.article-page__delete:hover {
+  color: #fff;
+  background: #b85c5c;
+}

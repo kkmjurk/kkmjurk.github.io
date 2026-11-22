@@ -28,3 +28,10 @@ export interface ArticlesResponse {
 export interface ArticleResponse {
   article: Article
 }
+
+export interface ArticleFormData {
+  title: string
+  description: string
+  body: string
+  tagList: string[]
+}

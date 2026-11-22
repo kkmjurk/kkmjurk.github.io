@@ -1,17 +1,68 @@
-import type { ArticleResponse, ArticlesResponse } from '../types/article'
+import type {
+  ArticleFormData,
+  ArticleResponse,
+  ArticlesResponse,
+} from '../types/article'
 
 const API_URL = 'https://realworld.habsida.net/api'
 
-async function handleResponse<T>(response: Response): Promise<T> {
-  if (!response.ok) {
-    if (response.status === 429) {
-      throw new Error('Too many requests. Please try again later.')
-    }
+export class ArticleApiError extends Error {
+  errors: Record<string, string[]>
 
-    throw new Error(`Request failed: ${response.status}`)
+  constructor(message: string, errors: Record<string, string[]> = {}) {
+    super(message)
+    this.name = 'ArticleApiError'
+    this.errors = errors
+  }
+}
+
+async function handleResponse<T>(response: Response): Promise<T> {
+  const text = await response.text()
+
+  let data: Record<string, unknown> = {}
+
+  if (text) {
+    try {
+      data = JSON.parse(text) as Record<string, unknown>
+    } catch {
+      data = { message: text }
+    }
   }
 
-  return response.json()
+  if (!response.ok) {
+    const errors = data.errors as Record<string, string[]> | undefined
+
+    throw new ArticleApiError(
+      errors
+        ? Object.values(errors).flat().join(' ')
+        : String(data.message ?? `Request failed: ${response.status}`),
+      errors ?? {},
+    )
+  }
+
+  return data as T
+}
+
+async function articleRequest(
+  endpoint: string,
+  method: 'POST' | 'PUT' | 'DELETE',
+  token: string,
+  article?: ArticleFormData,
+): Promise<ArticleResponse | void> {
+  const response = await fetch(`${API_URL}${endpoint}`, {
+    method,
+    headers: {
+      Authorization: `Token ${token}`,
+      'Content-Type': 'application/json',
+    },
+    ...(article ? { body: JSON.stringify({ article }) } : {}),
+  })
+
+  if (method === 'DELETE' && response.ok) {
+    return
+  }
+
+  return handleResponse<ArticleResponse>(response)
 }
 
 export async function getArticles(
@@ -34,6 +85,65 @@ export async function getArticle(
   const response = await fetch(
     `${API_URL}/articles/${encodeURIComponent(slug)}`,
     { signal },
+  )
+
+  return handleResponse<ArticleResponse>(response)
+}
+
+export function createArticle(data: ArticleFormData, token: string) {
+  return articleRequest('/articles', 'POST', token, data)
+}
+
+export function updateArticle(
+  slug: string,
+  data: ArticleFormData,
+  token: string,
+) {
+  return articleRequest(
+    `/articles/${encodeURIComponent(slug)}`,
+    'PUT',
+    token,
+    data,
+  )
+}
+
+export function deleteArticle(slug: string, token: string) {
+  return articleRequest(
+    `/articles/${encodeURIComponent(slug)}`,
+    'DELETE',
+    token,
+  )
+}
+
+export async function favoriteArticle(
+  slug: string,
+  token: string,
+): Promise<ArticleResponse> {
+  const response = await fetch(
+    `${API_URL}/articles/${encodeURIComponent(slug)}/favorite`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    },
+  )
+
+  return handleResponse<ArticleResponse>(response)
+}
+
+export async function unfavoriteArticle(
+  slug: string,
+  token: string,
+): Promise<ArticleResponse> {
+  const response = await fetch(
+    `${API_URL}/articles/${encodeURIComponent(slug)}/favorite`,
+    {
+      method: 'DELETE',
+      headers: {
+        Authorization: `Token ${token}`,
+      },
+    },
   )
 
   return handleResponse<ArticleResponse>(response)
