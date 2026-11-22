@@ -28,13 +28,14 @@ function ArticlePage() {
     if (!slug) return
 
     const controller = new AbortController()
+    const articleSlug = slug
 
     async function loadArticle() {
       try {
         setLoading(true)
         setError('')
 
-        const data = await getArticle(slug, controller.signal)
+        const data = await getArticle(articleSlug, controller.signal)
         setArticle(data.article)
       } catch (err) {
         if (controller.signal.aborted) return
